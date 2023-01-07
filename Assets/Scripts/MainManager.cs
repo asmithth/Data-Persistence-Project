@@ -18,8 +18,21 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
-    
-    // Start is called before the first frame update
+    private MainManager Instance;
+
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         const float step = 0.6f;
